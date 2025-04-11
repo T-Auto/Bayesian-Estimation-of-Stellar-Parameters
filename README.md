@@ -1,45 +1,50 @@
 # Bayesian Estimation of Stellar Parameters
-[[Englishi]](README.md)✅
+[[English]](README.md) ✅
 
-[[简体中文]](README_zh.md)
+[[简体中文]](README_zh.md) 
 ## 1. Project Overview
 
-This project aims to use low-resolution spectroscopic data from the LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) survey, combined with the PHOENIX theoretical stellar atmosphere models, to perform Bayesian estimation of key stellar physical parameters (effective temperature $T_{\text{eff}}$, surface gravity $\log g$, and metallicity $[\text{Fe/H}]$). The estimated results will be saved in a FITS file.
+This project reads spectral files provided by astronomical telescopes like LAMOST or Gaia, performs Bayesian estimation of key stellar physical parameters (effective temperature $T_{\text{eff}}$, surface gravity $\log g$, metallicity $[\text{Fe/H}]$), and saves the estimation results as .fits files.
+
+Another project by our team, [A python tool library for astronomy](https://github.com/T-Auto/Python-tools-for-Astronomy), provides necessary tools for this solution, such as information reading, catalog cross-matching, and error calculation.
 
 ## 2. Usage
 
-1. **Prepare Data**: Ensure that the required LAMOST catalog, LAMOST spectra files, PHOENIX model spectra files, and the PHOENIX wavelength file are present in the data path specified in `config/settings.py`.
+Taking the parameter estimation using low-resolution spectral data provided by the LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) survey project as an example:
 
-2. **Run the Script**: In the root directory of the project, execute the following command:
+1.  **Prepare Data**: Ensure that the required LAMOST catalog, LAMOST spectral files, PHOENIX model spectral files, and PHOENIX wavelength file exist in the data paths specified in `config/settings.py`.
 
-   ```bash
-   python start.py
+2.  **Run Script**: In the project root directory, execute the following command:
 
-1. **View Results**: The program will carry out the parameter estimation process and generate a FITS file containing the estimated parameters at the `OUTPUT_FITS_PATH` specified in `config/settings.py` (default is `output.fits`).
+    ```bash
+    python start.py
+    ```
 
-During execution, the program will output log messages indicating processing progress as well as any warnings or errors encountered.
+3.  **Check Results**: The program will execute the parameter estimation process and generate a FITS file containing the estimated parameters at the `OUTPUT_FITS_PATH` specified in `config/settings.py` (defaults to `output.fits`).
+
+During runtime, the program will output log information, displaying the processing progress and any potential warnings or errors.
 
 ## 3. Configuration
 
 All configurable parameters are centralized in the `config/settings.py` file. Key parameters include:
 
-- **Data Paths**:
-  - `LAMOST_CATALOG_PATH`: Path to the LAMOST catalog file.
-  - `LAMOST_SPECTRA_DIR`: Directory path containing LAMOST spectra files.
-  - `PHOENIX_SPECTRA_DIR`: Directory path containing PHOENIX model spectra files.
-  - `PHOENIX_WAVE_PATH`: Path to the PHOENIX model wavelength file.
-  - `OUTPUT_FITS_PATH`: Path to the output FITS file with results.
-- **Filtering Criteria**:
-  - `TARGET_CLASS`: Target object type to be processed (e.g., 'STAR').
-  - `MIN_SNRG`: Minimum acceptable signal-to-noise ratio in the g-band.
-- **Processing Parameters**:
-  - `MIN_VALID_PIXELS`: Minimum number of valid pixels required for a spectrum to be processed.
-  - `WAVE_INTERPOLATE_BOUNDS_ERROR`, `WAVE_INTERPOLATE_FILL_VALUE`: Parameters controlling interpolation behavior.
-- **Performance Configuration**:
-  - `NUM_PROCESSES`: Number of worker processes for parallel processing (default is CPU core count minus one).
-  - `MAX_SPECTRA_TO_PROCESS`: (Optional) Limit the number of spectra to process for testing or debugging. Set to `None` to process all spectra that meet the criteria.
-- **Output Format**:
-  - `OUTPUT_COLUMNS`: Column names to be included in the output FITS file.
-  - `OUTPUT_FORMATS`: Data formats for each column in the output FITS file.
+*   **Data Paths**:
+    *   `LAMOST_CATALOG_PATH`: Path to the LAMOST catalog file.
+    *   `LAMOST_SPECTRA_DIR`: Directory path storing LAMOST spectral files.
+    *   `PHOENIX_SPECTRA_DIR`: Directory path storing PHOENIX model spectral files.
+    *   `PHOENIX_WAVE_PATH`: Path to the wavelength file corresponding to the PHOENIX models.
+    *   `OUTPUT_FITS_PATH`: Path for the output results FITS file.
+*   **Filtering Criteria**:
+    *   `TARGET_CLASS`: Target object type to process (e.g., 'STAR').
+    *   `MIN_SNRG`: Minimum acceptable signal-to-noise ratio (SNR) of the spectrum (e.g., in the g-band).
+*   **Processing Parameters**:
+    *   `MIN_VALID_PIXELS`: Minimum number of valid pixels required for a spectrum to be processed effectively.
+    *   `WAVE_INTERPOLATE_BOUNDS_ERROR`, `WAVE_INTERPOLATE_FILL_VALUE`: Parameters controlling interpolation behavior.
+*   **Performance Configuration**:
+    *   `NUM_PROCESSES`: Number of worker processes for parallel processing (defaults to the number of CPU cores minus 1).
+    *   `MAX_SPECTRA_TO_PROCESS`: (Optional) Limit the number of spectra to process, useful for testing or debugging. Set to `None` to process all qualifying spectra.
+*   **Output Format**:
+    *   `OUTPUT_COLUMNS`: Column names to include in the output FITS file.
+    *   `OUTPUT_FORMATS`: Data formats for each column in the output FITS file.
 
-Please modify the `config/settings.py` file according to your actual data storage paths and requirements.
+Please modify the `config/settings.py` file according to your actual data storage locations and requirements.
