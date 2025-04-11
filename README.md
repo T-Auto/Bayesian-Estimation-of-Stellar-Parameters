@@ -1,5 +1,7 @@
 # Bayesian Estimation of Stellar Parameters
+[[Englishi]](README.md)✅
 
+[[简体中文]](README_zh.md)
 ## 1. Project Overview
 
 This project aims to use low-resolution spectroscopic data from the LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) survey, combined with the PHOENIX theoretical stellar atmosphere models, to perform Bayesian estimation of key stellar physical parameters (effective temperature $T_{\text{eff}}$, surface gravity $\log g$, and metallicity $[\text{Fe/H}]$). The estimated results will be saved in a FITS file.
