@@ -6,11 +6,11 @@
 
 本项目可以读取来自LAMOST或Gaia天文望远镜提供的光谱文件，对恒星的关键物理参数（有效温度 $T_{\text{eff}}$、表面重力 $\log g$、金属丰度 $[\text{Fe/H}]$）进行贝叶斯估计，并将估计结果保存为.fits文件。
 
-本团队的另一个项目[A python tool library for astronomy](https://github.com/T-Auto/Python-tools-for-Astronomy)提供了本方案所需的信息读取、星表交叉等工具。
+本团队的另一个项目[A python tool library for astronomy](https://github.com/T-Auto/Python-tools-for-Astronomy)提供了本方案所需的信息读取、星表交叉、误差计算等工具。
 
 ## 2. 使用方法
 
-以LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) 巡天项目提供的低分辨率光谱数据为例。
+以使用LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) 巡天项目提供的低分辨率光谱数据进行参数推算为例。
 
 1. **准备数据**: 确保 `config/settings.py` 中指定的数据路径下存在所需的 LAMOST 星表、LAMOST 光谱文件、PHOENIX 模型光谱文件和 PHOENIX 波长文件。
 
