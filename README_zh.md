@@ -8,8 +8,6 @@
 
 本团队的另一个项目[A python tool library for astronomy](https://github.com/T-Auto/Python-tools-for-Astronomy)提供了本方案所需的信息读取、星表交叉等工具。
 
-旨在使用 LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) 巡天项目提供的低分辨率光谱数据，结合 PHOENIX 理论恒星大气模型，对恒星的关键物理参数（有效温度 $T_{\text{eff}}$、表面重力 $\log g$、金属丰度 $[\text{Fe/H}]$）进行贝叶斯估计，并将估计结果保存为 FITS 文件。
-
 ## 2. 使用方法
 
 以LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) 巡天项目提供的低分辨率光谱数据为例。
