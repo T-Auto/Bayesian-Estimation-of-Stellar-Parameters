@@ -56,7 +56,7 @@ def main():
     available_spectra_info = scan_and_parse_lamost_spectra(settings.LAMOST_SPECTRA_DIR)
     if not available_spectra_info:
         logging.error("未能找到任何可用的 LAMOST 光谱文件，程序退出。")
-        return # 使用 return 替代 exit()
+        return 
 
     logging.info("步骤 2/6: 加载 LAMOST 星表...")
     lamost_catalog = load_lamost_catalog(settings.LAMOST_CATALOG_PATH)
@@ -93,11 +93,10 @@ def main():
     planid_col_exists = 'planid' in lamost_catalog.colnames
 
     for spec_info in tqdm(available_spectra_info, desc="预筛选任务"):
-        # 直接在循环内处理 planid strip
         try:
             lookup_key = (
                 spec_info['lmjd'],
-                spec_info['planid'].strip(), # 在这里 strip
+                spec_info['planid'].strip(), 
                 spec_info['spid'],
                 spec_info['fiberid']
             )
@@ -109,7 +108,6 @@ def main():
         target_row_index = catalog_lookup.get(lookup_key)
 
         if target_row_index is None:
-            # logging.debug(f"光谱文件 {spec_info['filepath']} 无匹配星表条目 (key={lookup_key})。")
             skipped_match_fail += 1
             continue
             
@@ -126,7 +124,6 @@ def main():
                 target_snrg_val > settings.MIN_SNRG and 
                 np.isfinite(target_snrg_val)
             ):
-                # logging.debug(f"光谱文件 {spec_info['filepath']} (obsid={obsid}) 未通过筛选 (class='{target_class_val}', snrg={target_snrg_val:.2f})。")
                 skipped_filter_fail += 1
                 continue
             
@@ -145,7 +142,7 @@ def main():
                 break
 
         except (KeyError, ValueError, TypeError) as filter_err:
-            obsid_err = locals().get('obsid', '未知') # 获取局部变量 obsid
+            obsid_err = locals().get('obsid', '未知') 
             logging.warning(f"光谱文件 {spec_info['filepath']} (obsid={obsid_err}) 筛选时出错: {filter_err}")
             skipped_filter_fail += 1
             continue
@@ -162,15 +159,12 @@ def main():
     results = []
     logging.info(f"开始使用 {settings.NUM_PROCESSES} 个进程并行处理 {num_tasks_final} 个光谱任务...")
     
-    # 使用 partial 预先绑定不变的参数
     worker_func = partial(process_spectrum_task, phoenix_grid=phoenix_grid, phoenix_wave=phoenix_wave)
 
-    # 推荐的 chunksize 计算方式
     chunksize = max(1, num_tasks_final // (settings.NUM_PROCESSES * 4))
     logging.info(f"多进程池 chunksize 设置为: {chunksize}")
 
     with multiprocessing.Pool(processes=settings.NUM_PROCESSES) as pool:
-        # 使用 imap_unordered 以获得更好的内存效率和进度反馈
         # 使用 tqdm 显示进度条
         imap_results = pool.imap_unordered(worker_func, tasks_to_process, chunksize=chunksize)
         
@@ -191,6 +185,5 @@ def main():
     logging.info("恒星参数估计流程执行完毕。")
 
 if __name__ == "__main__":
-    # Windows 平台需要这个保护，防止子进程重新执行主模块代码
     multiprocessing.freeze_support()
     main() 
