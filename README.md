@@ -10,6 +10,10 @@ Another project by our team, [A python tool library for astronomy](https://githu
 
 ## 2. Usage
 
+Usage example video:  
+
+https://private-user-images.githubusercontent.com/160485532/433817983-edfbe05c-6cfd-4b5d-8ee7-5cf5f71df3f1.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDQ3MTc4MTcsIm5iZiI6MTc0NDcxNzUxNywicGF0aCI6Ii8xNjA0ODU1MzIvNDMzODE3OTgzLWVkZmJlMDVjLTZjZmQtNGI1ZC04ZWU3LTVjZjVmNzFkZjNmMS5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDE1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQxNVQxMTQ1MTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iNzYyMDcxZGE2ZDE1NzgwZGQ2OGMyOWEyM2I2NjQ3MDYzMmU2YWE0YWNiMTJiYTFiZmM1ZDMyNWNlN2Q3NjNjJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.LapN4AunfZwT9oYrjbDpe9G2QuArTgyd3d36WFWPgH0
+
 Taking the parameter estimation using low-resolution spectral data provided by the LAMOST (Large Sky Area Multi-Object Fiber Spectroscopic Telescope) survey project as an example:
 
 1.  **Prepare Data**: Ensure that the required LAMOST catalog, LAMOST spectral files, PHOENIX model spectral files, and PHOENIX wavelength file exist in the data paths specified in `config/settings.py`.
