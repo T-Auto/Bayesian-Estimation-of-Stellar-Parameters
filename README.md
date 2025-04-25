@@ -1,4 +1,4 @@
-# Bayesian Estimation of Stellar Parameters
+# Maximum Likelihood Estimation of Stellar Parameters
 [[English]](README.md) ✅
 
 [[简体中文]](README_zh.md) 
